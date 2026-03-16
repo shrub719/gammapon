@@ -47,7 +47,7 @@ def parse_page(href, f):
 
     img_src = ""
     if imgs:
-        img_src = URL + imgs[0].get("src")
+        img_src = imgs[0].get("src")
 
     categories = []
     if crumbs:
@@ -62,6 +62,6 @@ def get(url):
     return session.get(url)
 
 session = requests.Session()
-with open("output/parsed.json", "w") as f:
+with open("output/parsed2.json", "w") as f:
     parse_index(f)
     
