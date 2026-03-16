@@ -22,8 +22,9 @@
 }
 #result img {
     padding: 30px;
-    width: 200px;
+    width: 300px;
     display: block;
-    margin: auto;
+    margin: 30px auto;
+    border: 1px solid blue;
 }
 
