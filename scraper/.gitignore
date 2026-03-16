@@ -1,2 +1,2 @@
-parsed.csv
-.venv
+output/
+.venv/

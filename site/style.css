@@ -1,0 +1,16 @@
+.iframe-wrapper {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    border: 3px solid green;
+    margin: auto;
+}
+
+iframe {
+    position: absolute;
+    top: -220px;
+    left: 300px;
+    width: 600px;
+    height: 1000px;
+}

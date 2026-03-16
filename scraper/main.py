@@ -20,27 +20,32 @@ def parse_letter(href, f):
     soup = BeautifulSoup(res.content, "html.parser")
 
     for a in soup.select("ul.topics-list li a"):
-        parse_page(a.get("href"), a.text, f)
+        parse_page(a.get("href"), f)
 
-# def parse_page(href, f):
-#     print(" ", href)
-# 
-#     res = requests.get(URL + href)
-#     soup = BeautifulSoup(res.content, "html.parser")
-#     p = soup.select("div.entry-content p")
-# 
-#     id = href.split(".")[0][1:]
-#     title = soup.find("h1").text
-#     if p: 
-#         desc = p[0].text.replace("\n", "")
-#         if len(desc) > MAX_DESC_LEN: desc = desc[:MAX_DESC_LEN]
-#         # desc = desc.replace('src="/', 'src="' + URL + '/')
-#     else: 
-#         desc = ""
-# 
-#     f.write(f'{{ id: "{id}", title: "{title}", desc: """{desc}""" }},\n')
+def parse_page(href, f):
+    print(" ", href)
 
-def parse_page(href, text, f):
+    res = requests.get(URL + href)
+    soup = BeautifulSoup(res.content, "html.parser")
+    p = soup.select("div.entry-content p")
+
+    id = href.split(".")[0][1:]
+    title = soup.find("h1").text
+    if p: 
+        desc = str(p[0].encode_contents())
+        if len(desc) > MAX_DESC_LEN: desc = desc[:MAX_DESC_LEN]
+        desc = ( desc
+            .replace('src="/', 'src="' + URL + '/')
+            .replace('href="/', 'href="' + URL + '/')
+            .replace("\n", "")
+        )
+    else: 
+        desc = ""
+
+    f.write(f'{{ id: "{id}", title: "{title}", desc: """{desc}""" }},\n')
+    f.flush()
+
+def parse_page_simple(href, text, f):
     print(" ", href)
     
     id = href.split(".")[0][1:]
@@ -48,6 +53,6 @@ def parse_page(href, text, f):
 
     f.write(f"{id} // {text}\n")
 
-with open("parsed.csv", "w") as f:
+with open("output/parsed.json", "w") as f:
     parse_index(f)
     
