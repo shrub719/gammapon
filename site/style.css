@@ -37,6 +37,16 @@
     border: 1px solid blue;
 }
 
+#collection {
+    padding: 30px;
+    font: 20px serif;
+}
+#collection a {
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+
 #collection-link {
     font: 20px serif;
     text-align: center;
