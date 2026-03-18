@@ -74,7 +74,7 @@ async function getPage() {
     const title = document.createElement("a");
     title.innerText = page.title;
     title.href = `${URL}/${page.id}.html`;
-    title.target = "_blank";
+    // title.target = "_blank";
     result.appendChild(title);
 
     if (page.img) {

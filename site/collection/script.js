@@ -10,7 +10,7 @@ collection_json.forEach((page) => {
     const title = document.createElement("a");
     title.innerText = page.title;
     title.href = `${URL}/${page.id}.html`;
-    title.target = "_blank";
+    // title.target = "_blank";
     collection.appendChild(title);
 });
 
